@@ -10,5 +10,21 @@ class Round:
 
         self.matches.append(match)
 
+    def get_winners(self):
+        winners = []
+        for match in self.matches:
+            if match.winner is not None:
+                winners.append(match.winner.chess_id)
+        return winners
+
+    def get_draws(self):
+        drawers = []
+        for match in self.matches:
+            if match.winner is None:
+                for drawer_id in match.players:
+                    drawers.append(drawer_id.chess_id)
+
+        return drawers
+
     def serialize(self):
         return [match.serialize() for match in self.matches]

@@ -11,13 +11,14 @@ class Tournament:
         self.curr_round_num = 0
         self.completed = False
         self.players = []
+        self.points = {}
         self.rounds = []
 
     def add_player(self, player):
         if not isinstance(player, Player):
             raise TypeError("Only player objects may be added as players")
-
         self.players.append(player)
+        self.points[player.chess_id] = 0
 
     def add_round(self, tournament_round):
         if not isinstance(tournament_round, Round):
@@ -25,8 +26,15 @@ class Tournament:
 
         self.rounds.append(tournament_round)
         self.curr_round_num = len(self.rounds)
+        winners = tournament_round.get_winners()
+        drawers = tournament_round.get_draws()
+        for winner_id in winners:
+            self.update_score(winner_id, 1)
+        for drawer_id in drawers:
+            self.update_score(drawer_id, 0.5)
 
-    def 
+    def update_score(self, winner_id, point):
+        self.points[winner_id] = self.points.get(winner_id) + point
 
     def serialize(self):
         return {
@@ -36,6 +44,7 @@ class Tournament:
             "number_of_rounds": self.total_round_num,
             "current_round": self.curr_round_num,
             "completed": self.completed,
-            "players": [player.chess_id for player in self.players],
+            "players": self.players,
+            "points": self.points,
             "rounds": [tournament_round.serialize() for tournament_round in self.rounds]
         }
