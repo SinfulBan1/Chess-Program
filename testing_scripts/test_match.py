@@ -28,14 +28,16 @@ print(match.players)
 print(match.completed)
 print(match.winner)
 
-match.set_winner(player1)
-
-print(match.completed)
-print(match.winner)
-
 match.set_draw()
 
 print(match.completed)
 print(match.winner)
 
 # match.set_winner(player3)
+
+match.set_winner(player1)
+
+print(match.completed)
+print(match.winner)
+
+print(match.serialize())

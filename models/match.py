@@ -6,7 +6,7 @@ class Match:
     # track if match is complete
     # track winner
     # update player tournament points
-    # use with JSON - need to implement
+    # use with JSON
 
 
     def __init__(self, player1, player2):
@@ -24,3 +24,11 @@ class Match:
     def set_draw(self):
         self.winner = None # adding this in case someone accidentally sets winner first then realizes it was a draw
         self.completed = True
+
+    def serialize(self):
+        data = {
+            "players": [player.chess_id for player in self.players],
+            "completed": self.completed,
+            "winner": self.winner.chess_id if self.winner else None
+        }
+        return data
