@@ -67,4 +67,5 @@ class Tournament:
         for round_data in data["rounds"]:
             tournament.add_round(Round.from_data(round_data, players))
 
+
         return tournament
