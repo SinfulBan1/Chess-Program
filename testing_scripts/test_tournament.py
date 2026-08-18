@@ -66,3 +66,27 @@ round1.add_match(match2)
 tournament.add_round(round1)
 
 print(tournament.serialize())
+
+tournament_data = tournament.serialize()
+
+players = {
+    player1.chess_id: player1,
+    player2.chess_id: player2,
+    player3.chess_id: player3,
+    player4.chess_id: player4
+}
+
+print(tournament_data["players"])
+print(players)
+
+loaded_tournament = Tournament.from_data(
+    tournament_data,
+    players
+)
+
+print(loaded_tournament.name)
+print(loaded_tournament.venue)
+print(loaded_tournament.curr_round_num)
+print(loaded_tournament.completed)
+print(loaded_tournament.players)
+print(loaded_tournament.rounds)

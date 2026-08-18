@@ -28,3 +28,13 @@ class Round:
 
     def serialize(self):
         return [match.serialize() for match in self.matches]
+
+    @classmethod
+    def from_data(cls, data, players):
+        round_obj = cls()
+
+        for match_data in data:
+            match = Match.from_data(match_data, players)
+            round_obj.add_match(match)
+
+        return round_obj

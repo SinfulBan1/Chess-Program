@@ -44,3 +44,31 @@ round1.add_match(match2)
 
 print(round1.matches)
 print(round1.serialize())
+
+
+round_data = [
+    {
+        "players": ["AB12345", "CD67890"],
+        "completed": True,
+        "winner": "AB12345"
+    },
+    {
+        "players": ["EF11111", "GH22222"],
+        "completed": True,
+        "winner": None
+    }
+]
+
+players = {
+    player1.chess_id: player1,
+    player2.chess_id: player2,
+    player3.chess_id: player3,
+    player4.chess_id: player4
+}
+
+loaded_round = Round.from_data(round_data, players)
+
+print(loaded_round.matches)
+print(loaded_round.matches[0].winner.name)
+print(loaded_round.matches[1].winner)
+print(loaded_round.serialize())

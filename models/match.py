@@ -32,3 +32,17 @@ class Match:
             "winner": self.winner.chess_id if self.winner else None
         }
         return data
+    
+    @classmethod
+    def from_data(cls, data, players):
+        player1 = players[data["players"][0]]
+        player2 = players[data["players"][1]]
+
+        match = cls(player1, player2)
+
+        match.completed = data["completed"]
+
+        if data["winner"] is not None:
+            match.winner = players[data["winner"]]
+
+        return match

@@ -41,3 +41,32 @@ print(match.completed)
 print(match.winner)
 
 print(match.serialize())
+
+#test loading
+match_data = {
+    "players": ["AB12345", "CD67890"],
+    "completed": True,
+    "winner": "AB12345"
+}
+
+players = {
+    player1.chess_id: player1,
+    player2.chess_id: player2
+}
+
+loaded_match = Match.from_data(match_data, players)
+
+print(loaded_match.players)
+print(loaded_match.completed)
+print(loaded_match.winner.name)
+
+draw_data = {
+    "players": ["AB12345", "CD67890"],
+    "completed": True,
+    "winner": None
+}
+
+loaded_draw = Match.from_data(draw_data, players)
+
+print(loaded_draw.completed)
+print(loaded_draw.winner)

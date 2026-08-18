@@ -44,7 +44,27 @@ class Tournament:
             "number_of_rounds": self.total_round_num,
             "current_round": self.curr_round_num,
             "completed": self.completed,
-            "players": self.players,
+            "players": [player.chess_id for player in self.players],
             "points": self.points,
             "rounds": [tournament_round.serialize() for tournament_round in self.rounds]
         }
+
+    @classmethod
+    def from_data(cls, data, players):
+        tournament = cls(
+            data["name"],
+            data["dates"],
+            data["venue"],
+            data["number_of_rounds"]
+        )
+
+        tournament.curr_round_num = data["current_round"]
+        tournament.completed = data["completed"]
+
+        for player_id in data["players"]:
+            tournament.add_player(players[player_id])
+
+        for round_data in data["rounds"]:
+            tournament.add_round(Round.from_data(round_data, players))
+
+        return tournament
