@@ -49,6 +49,13 @@ class Tournament:
     def update_score(self, winner_id, point):
         self.points[winner_id] = self.points.get(winner_id) + point
 
+    def get_standings(self):
+        return sorted(
+            self.players,
+            key=lambda player: self.points[player.chess_id],
+            reverse=True
+        )
+
     def serialize(self):
         return {
             "name": self.name,
