@@ -50,44 +50,72 @@ tournament.add_player(player3)
 tournament.add_player(player4)
 
 
-match1 = Match(player1, player2)
-match2 = Match(player3, player4)
+# match1 = Match(player1, player2)
+# match2 = Match(player3, player4)
 
-match1.set_winner(player1)
-match2.set_draw()
-
-
-round1 = Round()
-
-round1.add_match(match1)
-round1.add_match(match2)
+# match1.set_winner(player1)
+# match2.set_draw()
 
 
-tournament.add_round(round1)
+# round1 = Round()
 
-print(tournament.serialize())
+# round1.add_match(match1)
+# round1.add_match(match2)
 
-tournament_data = tournament.serialize()
 
-players = {
-    player1.chess_id: player1,
-    player2.chess_id: player2,
-    player3.chess_id: player3,
-    player4.chess_id: player4
-}
+# tournament.add_round(round1)
 
-print(tournament_data["players"])
-print(players)
+# print(tournament.serialize())
 
-loaded_tournament = Tournament.from_data(
-    tournament_data,
-    players
-)
+# tournament_data = tournament.serialize()
 
-print(loaded_tournament.name)
-print(loaded_tournament.venue)
-print(loaded_tournament.curr_round_num)
-print(loaded_tournament.completed)
-print(loaded_tournament.players)
-print(loaded_tournament.rounds)
-print(loaded_tournament.serialize())
+# players = {
+#     player1.chess_id: player1,
+#     player2.chess_id: player2,
+#     player3.chess_id: player3,
+#     player4.chess_id: player4
+# }
+
+# # print(tournament_data["players"])
+# # print(players)
+
+# loaded_tournament = Tournament.from_data(
+#     tournament_data,
+#     players
+# )
+
+# print(loaded_tournament.name)
+# print(loaded_tournament.venue)
+# print(loaded_tournament.curr_round_num)
+# print(loaded_tournament.completed)
+# print(loaded_tournament.players)
+# print(loaded_tournament.rounds)
+# print(loaded_tournament.serialize())
+
+
+# Create Round 1
+tournament.create_first_round()
+
+round1 = tournament.rounds[0]
+for round_match in round1.matches:
+    for player in round_match.players:
+        print(player.name)
+# Complete the matches
+round1.matches[0].set_winner(round1.matches[0].players[0])
+round1.matches[1].set_draw()
+
+# Score Round 1
+tournament.score_round(round1)
+
+print(tournament.points)
+
+# Create Round 2
+tournament.create_next_round()
+
+# Display Round 2
+for match in tournament.rounds[1].matches:
+    print(
+        match.players[0].name,
+        "vs",
+        match.players[1].name
+    )

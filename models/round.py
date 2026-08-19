@@ -20,7 +20,7 @@ class Round:
     def get_draws(self):
         drawers = []
         for match in self.matches:
-            if match.winner is None:
+            if match.completed and match.winner is None:
                 for drawer_id in match.players:
                     drawers.append(drawer_id.chess_id)
 

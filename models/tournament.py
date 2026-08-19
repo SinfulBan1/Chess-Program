@@ -1,3 +1,6 @@
+import random
+
+from .match import Match
 from .round import Round
 from .player import Player
 
@@ -26,12 +29,22 @@ class Tournament:
 
         self.rounds.append(tournament_round)
         self.curr_round_num = len(self.rounds)
+
+    def score_round(self, tournament_round):
+        for match in tournament_round.matches:
+            if not match.completed:
+                raise ValueError("All matches in the round must be completed before scoring.")
         winners = tournament_round.get_winners()
         drawers = tournament_round.get_draws()
-        for winner_id in winners:
-            self.update_score(winner_id, 1)
-        for drawer_id in drawers:
-            self.update_score(drawer_id, 0.5)
+
+        for player_id in winners:
+            self.update_score(player_id, 1)
+
+        for player_id in drawers:
+            self.update_score(player_id, 0.5)
+
+        if self.curr_round_num == self.total_round_num:
+            self.completed = True
 
     def update_score(self, winner_id, point):
         self.points[winner_id] = self.points.get(winner_id) + point
@@ -49,6 +62,77 @@ class Tournament:
             "rounds": [tournament_round.serialize() for tournament_round in self.rounds]
         }
 
+    #matchmaking
+    def create_first_round(self):
+        if self.curr_round_num != 0:
+            raise ValueError("First round already created")
+
+        if len(self.players) % 2 != 0:
+            raise ValueError("An even number of players is required to start the first round!")
+        
+        shuffled_players = self.players.copy()
+        random.shuffle(shuffled_players)
+
+        tournament_round = Round()
+
+        for i in range(0, len(shuffled_players), 2):
+            player1 = shuffled_players[i]
+            player2 = shuffled_players[i+1]
+
+            match = Match(player1, player2)
+            tournament_round.add_match(match)
+
+        self.add_round(tournament_round)
+
+    def have_played(self, player1, player2):
+        for tournament_round in self.rounds:
+            for match in tournament_round.matches:
+                if player1 in match.players and player2 in match.players:
+                    return True
+
+        return False
+
+    def create_next_round(self):
+        if self.curr_round_num == 0:
+            raise ValueError("First round must be created first")
+
+        if self.curr_round_num >= self.total_round_num:
+            raise ValueError("All rounds already created")
+
+        current_round = self.rounds[-1]
+
+        for match in current_round.matches:
+            if not match.completed:
+                raise ValueError("All matches in the current round must be completed to make the next round")
+
+        sorted_players = sorted(
+            self.players,
+            key=lambda player: self.points[player.chess_id],
+            reverse=True
+        )
+
+        tournament_round = Round()
+
+        while sorted_players:
+            player1 = sorted_players.pop(0)
+
+            opponent_index = None
+            for i, player2 in enumerate(sorted_players):
+                if not self.have_played(player1, player2):
+                    opponent_index = i
+                    break
+
+            if opponent_index is None:
+                opponent_index = 0
+
+            player2 = sorted_players.pop(opponent_index)
+
+            match = Match(player1, player2)
+            tournament_round.add_match(match)
+
+        self.add_round(tournament_round)
+
+    
     @classmethod
     def from_data(cls, data, players):
         tournament = cls(
