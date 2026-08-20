@@ -1,4 +1,5 @@
 import random
+import json
 
 from .match import Match
 from .round import Round
@@ -6,16 +7,24 @@ from .player import Player
 
 class Tournament:
 
-    def __init__(self, name, dates, venue, round_num):
+    def __init__(self, name, dates, venue, round_num, filepath=None):
         self.name = name
         self.dates = dates
         self.venue = venue
         self.total_round_num = round_num
         self.curr_round_num = 0
+        self.filepath = filepath
         self.completed = False
         self.players = []
         self.points = {}
         self.rounds = []
+
+    def save(self):
+        if self.filepath is None:
+            raise ValueError("Tournament doesn't have a filepath set.")
+
+        with open(self.filepath, "w") as file:
+            json.dump(self.serialize(), file, indent=4)
 
     def add_player(self, player):
         if not isinstance(player, Player):
@@ -141,22 +150,25 @@ class Tournament:
 
     
     @classmethod
-    def from_data(cls, data, players):
+    def from_data(cls, data, players, filepath=None):
         tournament = cls(
             data["name"],
             data["dates"],
             data["venue"],
-            data["number_of_rounds"]
+            data["number_of_rounds"],
+            filepath
         )
 
-        tournament.curr_round_num = data["current_round"]
         tournament.completed = data["completed"]
 
         for player_id in data["players"]:
             tournament.add_player(players[player_id])
 
+        tournament.points = data["points"]
+
         for round_data in data["rounds"]:
             tournament.add_round(Round.from_data(round_data, players))
 
+        tournament.curr_round_num = data["current_round"]
 
         return tournament
