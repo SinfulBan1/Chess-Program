@@ -20,7 +20,7 @@ class TournamentManager:
                     with open(filepath, "r") as file:
                         data = json.load(file)
 
-                    tournament = Tournament.from_data(data, players)
+                    tournament = Tournament.from_data(data, players, filepath)
                     self.tournaments.append(tournament)
 
                 except json.JSONDecodeError:
@@ -36,3 +36,21 @@ class TournamentManager:
                 players[player.chess_id] = player
 
         return players
+
+    def create(self, name, dates, venue, round_num):
+        filename = name.replace(" ", "") + ".json"
+        filepath = self.data_folder / filename
+
+        tournament = Tournament(
+            name,
+            dates,
+            venue,
+            round_num,
+            filepath
+        )
+
+        tournament.save()
+
+        self.tournaments.append(tournament)
+
+        return tournament

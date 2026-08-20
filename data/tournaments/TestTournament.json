@@ -1,0 +1,14 @@
+{
+    "name": "Test Tournament",
+    "dates": {
+        "from": "2026-08-20",
+        "to": "2026-08-21"
+    },
+    "venue": "Test Venue",
+    "number_of_rounds": 4,
+    "current_round": 0,
+    "completed": false,
+    "players": [],
+    "points": {},
+    "rounds": []
+}
