@@ -5,16 +5,11 @@ from models.tournament_manager import TournamentManager
 
 class TournamentListCmd(BaseCommand):
 
-    def __init__(self, club):
-        self.club = club
-
     def execute(self):
-        manager = TournamentManager(self.club)
-
+        manager = TournamentManager()
         tournaments = manager.load()
 
         return Context(
             "tournament-list",
-            club=self.club,
             tournaments=tournaments
         )

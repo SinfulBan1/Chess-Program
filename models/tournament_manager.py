@@ -2,19 +2,23 @@ from pathlib import Path
 import json
 
 from .tournament import Tournament
-
+from .club_manager import ClubManager
 
 class TournamentManager:
 
-    def __init__(self, club):
-        self.club = club
+    def __init__(self):
         self.tournament_dir = Path("data/tournaments")
 
     def get_players(self):
-        return{
-            player.chess_id: self.get_player
-            for player in self.club.players
-        }
+        players = {}
+
+        club_manager = ClubManager()
+
+        for club in club_manager.clubs:
+            for player in club.players:
+                players[player.chess_id] = player
+
+        return players
 
     def load(self):
         tournaments = []
@@ -26,3 +30,5 @@ class TournamentManager:
 
             tournament = Tournament.from_data(data, players)
             tournaments.append(tournament)
+
+        return tournaments

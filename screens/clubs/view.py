@@ -1,4 +1,4 @@
-from commands import ClubListCmd, NoopCmd
+from commands import ClubListCmd, NoopCmd, TournamentListCmd
 
 from ..base_screen import BaseScreen
 
@@ -27,7 +27,7 @@ class ClubView(BaseScreen):
             elif value.upper() == "C":
                 return NoopCmd("player-create", club=self.club)
             elif value.upper() == "T":
-                return NoopCmd("tournament-list", club=self.club)
+                return TournamentListCmd(self.club)
             elif value.isdigit():
                 value = int(value)
                 return NoopCmd(
