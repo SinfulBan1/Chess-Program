@@ -10,7 +10,7 @@ class PlayerSelect(BaseScreen):
         self.added_players = added_players
         self.tournament = tournament
         tm = TournamentManager()
-        self.players = tm.get_players()
+        self.players = list(tm.get_players().values())
         self.remaining_players = []
         for player in self.players:
             if player not in self.added_players:

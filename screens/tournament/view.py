@@ -1,6 +1,4 @@
-from commands import TournamentListCmd, NoopCmd
-
-from models import tournament
+from commands import TournamentListCmd, NoopCmd, CreateFirstRoundCmd
 
 from ..base_screen import BaseScreen
 
@@ -35,6 +33,12 @@ class TournamentView(BaseScreen):
         else:
             print("Status: In Progress")
 
+        if self.tournament.rounds:
+            print("Current Matches:")
+            curr_round = self.tournament.rounds[-1]
+            for idx, match in enumerate(curr_round.matches, 1):
+                print(f"{idx}. {match.players[0]} vs {match.players[1]}")
+
     def get_command(self):
         while True:
             print("\nWhat would you like to do?")
@@ -49,7 +53,7 @@ class TournamentView(BaseScreen):
             if value.upper() == "B":
                 return TournamentListCmd()
             elif value.upper() == "A":
-                if tournament.curr_round != 0:
+                if self.tournament.curr_round_num != 0:
                     raise ValueError("Tournament Already Started")
                 else:
                     return NoopCmd(
@@ -57,3 +61,5 @@ class TournamentView(BaseScreen):
                         added_players=self.tournament.players,
                         tournament=self.tournament
                     )
+            elif value.upper() == "F":
+                return CreateFirstRoundCmd(self.tournament)

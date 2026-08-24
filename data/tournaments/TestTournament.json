@@ -6,9 +6,38 @@
     },
     "venue": "Test Venue",
     "number_of_rounds": 4,
-    "current_round": 0,
+    "current_round": 1,
     "completed": false,
-    "players": [],
-    "points": {},
-    "rounds": []
+    "players": [
+        "NG39713",
+        "JW63361",
+        "QZ98880",
+        "QQ22510"
+    ],
+    "points": {
+        "NG39713": 0,
+        "JW63361": 0,
+        "QZ98880": 0,
+        "QQ22510": 0
+    },
+    "rounds": [
+        [
+            {
+                "players": [
+                    "JW63361",
+                    "QZ98880"
+                ],
+                "completed": false,
+                "winner": null
+            },
+            {
+                "players": [
+                    "QQ22510",
+                    "NG39713"
+                ],
+                "completed": false,
+                "winner": null
+            }
+        ]
+    ]
 }

@@ -85,6 +85,9 @@ class Tournament:
 
         if len(self.players) % 2 != 0:
             raise ValueError("An even number of players is required to start the first round!")
+
+        if len(self.players) < 2:
+            raise ValueError("Must be at least two players to start a tournament")
         
         shuffled_players = self.players.copy()
         random.shuffle(shuffled_players)
