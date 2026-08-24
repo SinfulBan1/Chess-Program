@@ -40,6 +40,8 @@ class Tournament:
         self.curr_round_num = len(self.rounds)
 
     def score_round(self, tournament_round):
+        if tournament_round.scored:
+            raise ValueError("This round has already been scored.")
         for match in tournament_round.matches:
             if not match.completed:
                 raise ValueError("All matches in the round must be completed before scoring.")
@@ -54,6 +56,8 @@ class Tournament:
 
         if self.curr_round_num == self.total_round_num:
             self.completed = True
+            
+        tournament_round.scored = True
 
     def update_score(self, winner_id, point):
         self.points[winner_id] = self.points.get(winner_id) + point

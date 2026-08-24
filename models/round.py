@@ -1,8 +1,9 @@
 from .match import Match
 
 class Round:
-    def __init__(self, matches=None):
+    def __init__(self, matches=None, scored=False):
         self.matches = matches if matches is not None else []
+        self.scored = scored
 
     def add_match(self, match):
         if not isinstance(match, Match):
@@ -27,13 +28,16 @@ class Round:
         return drawers
 
     def serialize(self):
-        return [match.serialize() for match in self.matches]
+        return {
+            "scored": self.scored,
+            "matches": [match.serialize() for match in self.matches]
+            }
 
     @classmethod
     def from_data(cls, data, players):
-        round_obj = cls()
+        round_obj = cls(scored=data.get("scored", False))
 
-        for match_data in data:
+        for match_data in data["matches"]:
             match = Match.from_data(match_data, players)
             round_obj.add_match(match)
 
