@@ -1,0 +1,14 @@
+{
+    "name": "PlayerSearchTest",
+    "dates": {
+        "from": "01-01-2001",
+        "to": "02-01-2020"
+    },
+    "venue": "here",
+    "number_of_rounds": 4,
+    "current_round": 0,
+    "completed": false,
+    "players": [],
+    "points": {},
+    "rounds": []
+}

@@ -45,7 +45,8 @@ class TournamentView(BaseScreen):
             print("A - Add players")
             print("S - View standings")
             print("F - Create first round")
-            print("N - Create next round")
+            print("N - Select winners and create next round")
+            print("G - Generate Report")
             print("B - Back")
 
             value = self.input_string()
@@ -63,3 +64,17 @@ class TournamentView(BaseScreen):
                     )
             elif value.upper() == "F":
                 return CreateFirstRoundCmd(self.tournament)
+            elif value.upper() == "N":
+                if self.tournament.curr_round_num == 0:
+                    print("The tournament has not started yet.")
+                elif self.tournament.completed:
+                    print("The tournament is already completed.")
+                else:
+                    return NoopCmd(
+                        "round-results",
+                        tournament=self.tournament
+                    )
+            elif value.upper() == "S":
+                return NoopCmd("tournament-standings", tournament=self.tournament)
+            elif value.upper() == "G":
+                return NoopCmd("tournament-report", tournament=self.tournament)
