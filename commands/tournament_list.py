@@ -6,9 +6,9 @@ from models.tournament_manager import TournamentManager
 class TournamentListCmd(BaseCommand):
 
     def execute(self):
-        manager = TournamentManager()
+        tm = TournamentManager()
 
         return Context(
             "tournament-list",
-            tournaments=manager.tournaments
+            tournaments=tm.tournaments
         )

@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from datetime import datetime
 
 from .tournament import Tournament
 from .club_manager import ClubManager
@@ -25,6 +26,14 @@ class TournamentManager:
 
                 except json.JSONDecodeError:
                     print(filepath, "is invalid JSON file.")
+
+        self.tournaments.sort(
+            key=lambda tournament: datetime.strptime(
+                tournament.dates["from"],
+                "%d-%m-%Y"
+            ),
+            reverse=True
+        )
 
     def get_players(self):
         players = {}

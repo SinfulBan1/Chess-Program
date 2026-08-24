@@ -1,4 +1,4 @@
-from commands import NoopCmd
+from commands import NoopCmd, ExitCmd
 from models import ClubManager
 
 from ..base_screen import BaseScreen
@@ -20,15 +20,16 @@ class TournamentList(BaseScreen):
         while True:
             print("Select a tournament to view.")
             print("Type 'C' to create a tournament.")
-            print("Type 'B' to go back to the main menu.")
+            print("Type 'S' to view clubs.")
+            print("Type 'X' to exit.")
 
             value = self.input_string()
 
-            if value.upper() == "B":
+            if value.upper() == "S":
                 cm = ClubManager()
                 
                 return NoopCmd(
-                    "main-menu",
+                    "club-list",
                     clubs=cm.clubs
                 )
 
@@ -36,6 +37,9 @@ class TournamentList(BaseScreen):
                 return NoopCmd(
                     "tournament-create"
                 )
+
+            elif value.upper() == "X":
+                return ExitCmd()
 
             elif value.isdigit():
                 value = int(value)

@@ -1,0 +1,14 @@
+{
+    "name": "mine",
+    "dates": {
+        "from": "24-08-2026",
+        "to": "25-08-2026"
+    },
+    "venue": "home",
+    "number_of_rounds": 2,
+    "current_round": 0,
+    "completed": false,
+    "players": [],
+    "points": {},
+    "rounds": []
+}

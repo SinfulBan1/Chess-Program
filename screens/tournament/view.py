@@ -70,10 +70,16 @@ class TournamentView(BaseScreen):
                 elif self.tournament.completed:
                     print("The tournament is already completed.")
                 else:
-                    return NoopCmd(
-                        "round-results",
-                        tournament=self.tournament
-                    )
+                    print("Are you sure you want to advance to the next round? Y/N")
+                    confirmation_value = self.input_string()
+
+                    if confirmation_value.upper() == "Y":
+                        return NoopCmd(
+                            "round-results",
+                            tournament=self.tournament
+                        )
+                    elif confirmation_value.upper() == "N":
+                        return NoopCmd("tournament-view", tournament=self.tournament)
             elif value.upper() == "S":
                 return NoopCmd("tournament-standings", tournament=self.tournament)
             elif value.upper() == "G":

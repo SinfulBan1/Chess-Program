@@ -1,5 +1,5 @@
 from .clubs import ClubCreate, ClubView
-from .main_menu import MainMenu
+from .club_list import ClubList
 from .players import PlayerEdit, PlayerView, PlayerSelect
 from .tournament.list import TournamentList
 from .tournament.create import TournamentCreate
@@ -10,7 +10,7 @@ from .tournament.report import TournamentReport
 
 __all__ = ["ClubCreate", 
            "ClubView", 
-           "MainMenu", 
+           "ClubList", 
            "PlayerView", 
            "PlayerEdit", 
            "TournamentList", 

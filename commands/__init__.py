@@ -7,6 +7,7 @@ from .create_tournament import TournamentCreateCmd
 from .tournament_list import TournamentListCmd
 from .create_first_round import CreateFirstRoundCmd
 from .complete_round import CompleteRoundCmd
+from .tournament_start import TournamentStartCmd
 
 __all__ = [
     "ClubCreateCmd",
@@ -17,5 +18,6 @@ __all__ = [
     "TournamentCreateCmd",
     "TournamentListCmd",
     "CreateFirstRoundCmd",
-    "CompleteRoundCmd"
+    "CompleteRoundCmd",
+    "TournamentStartCmd"
 ]
