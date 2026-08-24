@@ -1,3 +1,3 @@
-from .edit import PlayerEdit
-from .view import PlayerView
-from .select import PlayerSelect
+from .edit import PlayerEdit  # noqa: F401
+from .view import PlayerView  # noqa: F401
+from .select import PlayerSelect  # noqa: F401
