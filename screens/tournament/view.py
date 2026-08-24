@@ -55,7 +55,7 @@ class TournamentView(BaseScreen):
                 return TournamentListCmd()
             elif value.upper() == "A":
                 if self.tournament.curr_round_num != 0:
-                    raise ValueError("Tournament Already Started")
+                    print("The tournament already started. Cannot add new players")
                 else:
                     return NoopCmd(
                         "player-select",
