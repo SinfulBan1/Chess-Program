@@ -1,33 +1,35 @@
-# Starter code - OpenClassrooms WPS | P3
+# Chess Program
 
-This repository contains the work that has been done so far on the chess tournament program.
+This program is meant for use in the terminal, which allows users to create and manage tournaments.
 
-### Data files
+## Setup
 
-There are data files provided:
-- JSON files for the chess clubs of Springfield and Cornville
-- JSON files for two tournaments: one completed, and one in progress
+Clone or download this repo and open a terminal in the project directory (or alternatively, find it with cd command)
 
-### Models
+It is recommended that you create a virtual environment as well.
 
-This package contains the models already defined by the application:
-* `Player` is a class that represents a chess player
-* `Club` is a class that represents a chess club (including `Player`s)
-* `ClubManager` is a manager class that allows to manage all clubs (and create new ones)
+### Virtual environment creation
 
-### Screens
+```
+python -m venv .venv
+.venv/Scripts/activate
+```
 
-This package contains classes that are used by the application to display information from the models on the screen.
-Each screen returns a Command instance (= the action to be carried out).
+### Install the requirements
+```
+python -m pip install -r requirements.txt
+```
 
-### Commands
+## Running
 
-This package contains "commands" - instances of classes that are used to perform operations from the program.
-Commands follow a *template pattern*. They **must** define the `execute` method.
-When executed, a command returns a context.
+From the root directory, run:
+```
+python chess_program.py
+```
 
-### Main application
+The list of tournaments is the main menu of the program, although it is worth noting that if there is only one active tournament (current date is between start and end dates), that will be the page loaded initially.
 
-The main application is controlled by `manage_clubs.py`. Based on the current Context instance, it instantiates the screens and runs them. The command returned by the screen is then executed to obtain the next context.
+Users can navigate through the menus by typing letters/numbers into the console.
 
-The main application is an infinite loop and stops when a context has the attribute `run` set to False.
+When creating a tournament, the user will be able to give tournament information before being brought to the tournament view screen.
+From there, the user can add players and filter through them.
