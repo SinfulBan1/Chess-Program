@@ -33,6 +33,36 @@ class BaseScreen(ABC):
                 return value
             if empty and value:
                 return value
+            
+    def input_int(self, prompt="", default=None, minimum=None):
+        """Utility function to get a valid integer"""
+
+        while True:
+            value = self.input_string(prompt=prompt, default=default)
+
+            try:
+                value = int(value)
+
+                if minimum is not None and value < minimum:
+                    print(f"Please provide a number greater than or equal to {minimum}.")
+                    continue
+
+                return value
+
+            except ValueError:
+                print("Please provide a valid number.")
+            
+    def input_date(self, **kwargs):
+        """Utility function to get a valid date string"""
+
+        while True:
+            value = self.input_string(**kwargs)
+
+            try:
+                datetime.strptime(value, "%d-%m-%Y")
+                return value
+            except ValueError:
+                print("Please provide a valid date (dd-mm-yyyy)!")
 
     def input_email(self, **kwargs):
         """Utility function to get an email address"""
