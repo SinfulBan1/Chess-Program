@@ -10,6 +10,19 @@ It is recommended that you create a virtual environment as well.
 
 ### Virtual environment creation
 
-```bash
+```
 python -m venv .venv
 .venv/Scripts/activate
+```
+
+### Install the requirements
+```
+python -m pip install -r requirements.txt
+```
+
+## Running
+
+From the root directory, run:
+```
+python chess_program.py
+```
