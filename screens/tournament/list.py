@@ -1,4 +1,5 @@
-from commands import ClubListCmd, NoopCmd
+from commands import NoopCmd, MainMenuCmd
+from models import ClubManager
 
 from ..base_screen import BaseScreen
 
@@ -6,12 +7,11 @@ from ..base_screen import BaseScreen
 class TournamentList(BaseScreen):
     """Screen displaying the tournaments for a club"""
 
-    def __init__(self, club, tournaments=None):
-        self.club = club
+    def __init__(self, tournaments=None):
         self.tournaments = tournaments if tournaments is not None else []
 
     def display(self):
-        print("## Tournaments for", self.club.name)
+        print("## Tournaments")
 
         for idx, tournament in enumerate(self.tournaments, 1):
             print(idx, tournament.name)
@@ -20,20 +20,21 @@ class TournamentList(BaseScreen):
         while True:
             print("Select a tournament to view.")
             print("Type 'C' to create a tournament.")
-            print("Type 'B' to go back to the club.")
+            print("Type 'B' to go back to the main menu.")
 
             value = self.input_string()
 
             if value.upper() == "B":
+                cm = ClubManager()
+                
                 return NoopCmd(
-                    "club-view",
-                    club=self.club
+                    "main-menu",
+                    clubs=cm.clubs
                 )
 
             elif value.upper() == "C":
                 return NoopCmd(
-                    "tournament-create",
-                    club=self.club
+                    "tournament-create"
                 )
 
             elif value.isdigit():
@@ -42,6 +43,5 @@ class TournamentList(BaseScreen):
                 if value in range(1, len(self.tournaments) + 1):
                     return NoopCmd(
                         "tournament-view",
-                        club=self.club,
                         tournament=self.tournaments[value - 1]
                     )
