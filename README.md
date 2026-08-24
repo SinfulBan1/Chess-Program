@@ -1,33 +1,15 @@
-# Starter code - OpenClassrooms WPS | P3
+# Chess Program
 
-This repository contains the work that has been done so far on the chess tournament program.
+This program is meant for use in the terminal, which allows users to create and manage tournaments.
 
-### Data files
+## Setup
 
-There are data files provided:
-- JSON files for the chess clubs of Springfield and Cornville
-- JSON files for two tournaments: one completed, and one in progress
+Clone or download this repo and open a terminal in the project directory (or alternatively, find it with cd command)
 
-### Models
+It is recommended that you create a virtual environment as well.
 
-This package contains the models already defined by the application:
-* `Player` is a class that represents a chess player
-* `Club` is a class that represents a chess club (including `Player`s)
-* `ClubManager` is a manager class that allows to manage all clubs (and create new ones)
+### Virtual environment creation
 
-### Screens
-
-This package contains classes that are used by the application to display information from the models on the screen.
-Each screen returns a Command instance (= the action to be carried out).
-
-### Commands
-
-This package contains "commands" - instances of classes that are used to perform operations from the program.
-Commands follow a *template pattern*. They **must** define the `execute` method.
-When executed, a command returns a context.
-
-### Main application
-
-The main application is controlled by `manage_clubs.py`. Based on the current Context instance, it instantiates the screens and runs them. The command returned by the screen is then executed to obtain the next context.
-
-The main application is an infinite loop and stops when a context has the attribute `run` set to False.
+```bash
+python -m venv .venv
+.venv/Scripts/activate
