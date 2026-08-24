@@ -8,15 +8,15 @@ from .rounds.results import RoundResults
 from .tournament.standings import TournamentStandings
 from .tournament.report import TournamentReport
 
-__all__ = ["ClubCreate", 
-           "ClubView", 
-           "ClubList", 
-           "PlayerView", 
-           "PlayerEdit", 
-           "TournamentList", 
-           "TournamentCreate", 
-           "TournamentView", 
-           "PlayerSelect",
-           "RoundResults",
+__all__ = ["ClubCreate",
+           "ClubView",
+           "ClubList",
+           "PlayerView",
+           "PlayerEdit",
+           "TournamentList",
+           "TournamentCreate",
+           "TournamentView",
+           "PlayerSelect"
+           "RoundResults"
            "TournamentStandings",
            "TournamentReport"]

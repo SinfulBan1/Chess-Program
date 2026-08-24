@@ -5,6 +5,7 @@ from .match import Match
 from .round import Round
 from .player import Player
 
+
 class Tournament:
 
     def __init__(self, name, dates, venue, round_num, filepath=None):
@@ -56,7 +57,7 @@ class Tournament:
 
         if self.curr_round_num == self.total_round_num:
             self.completed = True
-            
+
         tournament_round.scored = True
 
     def update_score(self, winner_id, point):
@@ -82,7 +83,7 @@ class Tournament:
             "rounds": [tournament_round.serialize() for tournament_round in self.rounds]
         }
 
-    #matchmaking
+    # matchmaking
     def create_first_round(self):
         if self.curr_round_num != 0:
             raise ValueError("First round already created")
@@ -92,7 +93,7 @@ class Tournament:
 
         if len(self.players) < 2:
             raise ValueError("Must be at least two players to start a tournament")
-        
+
         shuffled_players = self.players.copy()
         random.shuffle(shuffled_players)
 
@@ -155,7 +156,6 @@ class Tournament:
 
         self.add_round(tournament_round)
 
-    
     @classmethod
     def from_data(cls, data, players, filepath=None):
         tournament = cls(

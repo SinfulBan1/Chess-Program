@@ -42,7 +42,7 @@ print(match.winner)
 
 print(match.serialize())
 
-#test loading
+# test loading
 match_data = {
     "players": ["AB12345", "CD67890"],
     "completed": True,

@@ -17,7 +17,6 @@ class PlayerSelect(BaseScreen):
                 self.remaining_players.append(player)
         if matches is not None:
             self.remaining_players = matches
-            
 
     def display(self):
         print("## Players Available")
@@ -65,7 +64,7 @@ class PlayerSelect(BaseScreen):
                     added_players=self.added_players,
                     tournament=self.tournament
                 )
-            
+
             elif value.isdigit():
                 value = int(value)
 

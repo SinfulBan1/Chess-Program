@@ -1,6 +1,7 @@
 from ..base_screen import BaseScreen
 from commands import NoopCmd
 
+
 class TournamentStandings(BaseScreen):
     def __init__(self, tournament):
         self.tournament = tournament

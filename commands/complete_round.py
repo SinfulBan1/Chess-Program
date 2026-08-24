@@ -1,6 +1,7 @@
 from .base import BaseCommand
 from .context import Context
 
+
 class CompleteRoundCmd(BaseCommand):
 
     def __init__(self, tournament):

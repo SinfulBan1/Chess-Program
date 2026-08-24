@@ -18,7 +18,7 @@ class TournamentCreate(BaseScreen):
 
         for key, prompt, func in attrs:
             data[key] = func(prompt=prompt)
-            
+
         data["round_num"] = self.input_int(
             prompt="Number of rounds",
             minimum=1

@@ -27,7 +27,7 @@ class TournamentList(BaseScreen):
 
             if value.upper() == "S":
                 cm = ClubManager()
-                
+
                 return NoopCmd(
                     "club-list",
                     clubs=cm.clubs

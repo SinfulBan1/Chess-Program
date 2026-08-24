@@ -1,5 +1,18 @@
 from commands import TournamentStartCmd
-from screens import ClubCreate, ClubView, ClubList, PlayerEdit, PlayerView, TournamentList, TournamentCreate, TournamentView, PlayerSelect, RoundResults, TournamentStandings, TournamentReport
+from screens import (
+    ClubCreate,
+    ClubView,
+    ClubList,
+    PlayerEdit,
+    PlayerView,
+    TournamentList,
+    TournamentCreate,
+    TournamentView,
+    PlayerSelect,
+    RoundResults,
+    TournamentStandings,
+    TournamentReport,
+)
 
 
 class App:

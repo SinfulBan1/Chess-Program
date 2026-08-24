@@ -1,5 +1,6 @@
 from .match import Match
 
+
 class Round:
     def __init__(self, matches=None, scored=False):
         self.matches = matches if matches is not None else []

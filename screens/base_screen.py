@@ -33,7 +33,7 @@ class BaseScreen(ABC):
                 return value
             if empty and value:
                 return value
-            
+
     def input_int(self, prompt="", default=None, minimum=None):
         """Utility function to get a valid integer"""
 
@@ -51,7 +51,7 @@ class BaseScreen(ABC):
 
             except ValueError:
                 print("Please provide a valid number.")
-            
+
     def input_date(self, **kwargs):
         """Utility function to get a valid date string"""
 

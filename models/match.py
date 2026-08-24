@@ -1,5 +1,5 @@
 # matches class
-from models.player import Player
+
 
 class Match:
     # hold 2 players
@@ -8,21 +8,20 @@ class Match:
     # update player tournament points
     # use with JSON
 
-
     def __init__(self, player1, player2):
         self.players = [player1, player2]
         self.completed = False
         self.winner = None
 
     def set_winner(self, winner):
-        if winner not in self.players: # if the winner isn't input correctly
+        if winner not in self.players:  # if the winner isn't input correctly
             raise ValueError("Winner must be one of the players in the match.")
 
         self.winner = winner
         self.completed = True
 
     def set_draw(self):
-        self.winner = None # adding this in case someone accidentally sets winner first then realizes it was a draw
+        self.winner = None  # adding this in case someone accidentally sets winner first then realizes it was a draw
         self.completed = True
 
     def serialize(self):
@@ -32,7 +31,7 @@ class Match:
             "winner": self.winner.chess_id if self.winner else None
         }
         return data
-    
+
     @classmethod
     def from_data(cls, data, players):
         player1 = players[data["players"][0]]

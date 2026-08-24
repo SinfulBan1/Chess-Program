@@ -2,6 +2,7 @@ from commands import CompleteRoundCmd
 
 from ..base_screen import BaseScreen
 
+
 class RoundResults(BaseScreen):
     def __init__(self, tournament):
         self.tournament = tournament

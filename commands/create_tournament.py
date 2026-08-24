@@ -2,6 +2,7 @@ from commands.context import Context
 from models import TournamentManager
 from .base import BaseCommand
 
+
 class TournamentCreateCmd(BaseCommand):
 
     def __init__(self, name, start_date, end_date, venue, round_num):
@@ -17,7 +18,7 @@ class TournamentCreateCmd(BaseCommand):
             "from": self.start_date,
             "to": self.end_date
         }
-    
+
         tm = TournamentManager()
 
         tournament = tm.create(
