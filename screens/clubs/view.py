@@ -1,4 +1,4 @@
-from commands import ClubListCmd, NoopCmd, TournamentListCmd
+from commands import ClubListCmd, NoopCmd
 
 from ..base_screen import BaseScreen
 
@@ -19,15 +19,12 @@ class ClubView(BaseScreen):
         """Gets the command for this screen"""
         while True:
             print("Select a player to view/edit it, or 'C' to create a new player.")
-            print("Type 'T' to manage tournaments.")
             print("Type 'B' to go back to main menu.")
             value = self.input_string()
             if value.upper() == "B":
                 return ClubListCmd()
             elif value.upper() == "C":
                 return NoopCmd("player-create", club=self.club)
-            elif value.upper() == "T":
-                return TournamentListCmd(self.club)
             elif value.isdigit():
                 value = int(value)
                 return NoopCmd(
