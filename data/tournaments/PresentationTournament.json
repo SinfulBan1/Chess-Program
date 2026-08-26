@@ -1,0 +1,88 @@
+{
+    "name": "Presentation Tournament",
+    "dates": {
+        "from": "20-08-2026",
+        "to": "29-08-2026"
+    },
+    "venue": "Open Classrooms HQ",
+    "number_of_rounds": 3,
+    "current_round": 3,
+    "completed": true,
+    "players": [
+        "NG39713",
+        "PB43166",
+        "HY04207",
+        "BR95594"
+    ],
+    "points": {
+        "NG39713": 0.5,
+        "PB43166": 2.5,
+        "HY04207": 1.5,
+        "BR95594": 1.5
+    },
+    "rounds": [
+        {
+            "scored": true,
+            "matches": [
+                {
+                    "players": [
+                        "HY04207",
+                        "PB43166"
+                    ],
+                    "completed": true,
+                    "winner": "PB43166"
+                },
+                {
+                    "players": [
+                        "BR95594",
+                        "NG39713"
+                    ],
+                    "completed": true,
+                    "winner": "BR95594"
+                }
+            ]
+        },
+        {
+            "scored": true,
+            "matches": [
+                {
+                    "players": [
+                        "PB43166",
+                        "BR95594"
+                    ],
+                    "completed": true,
+                    "winner": null
+                },
+                {
+                    "players": [
+                        "NG39713",
+                        "HY04207"
+                    ],
+                    "completed": true,
+                    "winner": null
+                }
+            ]
+        },
+        {
+            "scored": true,
+            "matches": [
+                {
+                    "players": [
+                        "PB43166",
+                        "NG39713"
+                    ],
+                    "completed": true,
+                    "winner": "PB43166"
+                },
+                {
+                    "players": [
+                        "BR95594",
+                        "HY04207"
+                    ],
+                    "completed": true,
+                    "winner": "HY04207"
+                }
+            ]
+        }
+    ]
+}
