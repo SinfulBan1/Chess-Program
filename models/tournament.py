@@ -86,13 +86,16 @@ class Tournament:
     # matchmaking
     def create_first_round(self):
         if self.curr_round_num != 0:
-            raise ValueError("First round already created")
+            print("First round already created.")
+            return
 
         if len(self.players) % 2 != 0:
-            raise ValueError("An even number of players is required to start the first round!")
+            print("An even number of players is required to start the tournament.")
+            return
 
         if len(self.players) < 2:
-            raise ValueError("Must be at least two players to start a tournament")
+            print("There must be at least two players to start a tournament.")
+            return
 
         shuffled_players = self.players.copy()
         random.shuffle(shuffled_players)
