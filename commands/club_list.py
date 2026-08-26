@@ -9,4 +9,4 @@ class ClubListCmd(BaseCommand):
 
     def execute(self):
         cm = ClubManager()
-        return Context("tournament-list", clubs=cm.clubs)
+        return Context("tournament-list")
